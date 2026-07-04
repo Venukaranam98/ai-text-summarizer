@@ -1,0 +1,38 @@
+# Environment & secrets
+.env
+.env.local
+*.env
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache/bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Alembic (keep migrations, ignore local db files if using sqlite for testing)
+*.db
+*.sqlite3
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
