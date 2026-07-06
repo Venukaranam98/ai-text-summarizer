@@ -1,106 +1,81 @@
 import styled from '@emotion/styled';
 
 export const colors = {
-  primary: '#e91d2a',
+  primary: '#5046e5', // vibrant purple from mockup
+  primaryHover: '#4338ca',
+  primaryLight: '#eeefff', // light purple for icon backgrounds
   onPrimary: '#ffffff',
-  canvas: '#ffffff',
+  canvas: '#fafcff', // very light off-white/blue background
   surface: '#ffffff',
-  ink: '#000000',
-  frameInk: '#000000',
-  yellowSticker: '#fcc20f',
-  purpleStripe: '#6a26a4',
-  link: '#0000ee',
-  tintOlive: '#8e8a25',
-  tintSage: '#b3bd95',
-  tintSalmon: '#d77a7a',
-  tintPeach: '#e6915d',
-  tintLime: '#c0d4a7',
-  tintSky: '#9ab6c8',
-  tintSteel: '#a5b8c0',
-  tintPeriwinkle: '#8c9ae0',
+  surfaceHover: '#f3f4f6',
+  ink: '#111827', // dark slate for headings
+  grayText: '#6b7280', // gray for body/labels
+  border: '#e5e7eb',
+  inputBg: '#ffffff',
 };
 
 export const typography = {
+  sans: `
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  `,
   display: `
-    font-family: "Arial Black", Helvetica, system-ui, sans-serif;
-    font-size: 36px;
-    font-weight: 900;
-    line-height: 1.0;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   `,
   heading1: `
-    font-family: "Arial Black", Helvetica, system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 24px;
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: 0;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
   `,
   heading2: `
-    font-family: Helvetica, Arial, system-ui, sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
   `,
   heading3: `
-    font-family: Helvetica, Arial, system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 14px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.4;
   `,
   body: `
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0;
+    line-height: 1.5;
   `,
   bodySm: `
-    font-family: "Times New Roman", Times, serif;
-    font-size: 12px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
     font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0;
-  `,
-  caption: `
-    font-family: "Times New Roman", Times, serif;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 1.35;
-    letter-spacing: 0;
+    line-height: 1.5;
   `,
   button: `
-    font-family: Helvetica, Arial, system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.0;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  `,
-  link: `
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0;
-    text-decoration: underline;
+    font-weight: 500;
+    line-height: 1;
   `,
   uiLabel: `
-    font-family: Helvetica, Arial, system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.0;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
   `,
 };
 
 export const rounded = {
   none: '0px',
+  sm: '4px',
+  md: '8px',
+  lg: '12px',
+  xl: '16px',
   full: '9999px',
 };
 
@@ -116,186 +91,270 @@ export const spacing = {
   xxl: '24px',
   sectionSm: '32px',
   section: '40px',
-  sectionLg: '48px',
+  sectionLg: '64px',
 };
 
+export const sizes = {
+  inputHeight: '42px',
+  buttonHeight: '42px',
+  buttonHeightSm: '36px',
+  navHeight: '72px',
+};
+
+export const transitions = {
+  fast: '150ms ease',
+  normal: '200ms ease',
+  smooth: '300ms cubic-bezier(0.4, 0, 0.2, 1)',
+};
+
+/* ─── Shared Components ─── */
+
 export const PageFrame = styled.div`
-  background-color: ${colors.frameInk};
-  color: ${colors.canvas};
-  border-radius: ${rounded.none};
-  padding: 8px;
+  background-color: ${colors.canvas};
+  color: ${colors.ink};
   min-height: 100vh;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  /* Subtle background abstract shapes */
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -20vh;
+    left: -10vw;
+    width: 60vw;
+    height: 60vw;
+    max-width: 600px;
+    max-height: 600px;
+    background-color: #f3f0ff;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+  }
 `;
 
-export const TopBanner = styled.div`
-  background-color: ${colors.frameInk};
-  color: ${colors.canvas};
-  ${typography.heading2}
-  border-radius: ${rounded.none};
-  padding: 12px 16px;
+export const Container = styled.div`
+  width: 100%;
+  padding-right: 24px;
+  padding-left: 24px;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+`;
+
+export const BackgroundDecorations = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+
+  svg {
+    position: absolute;
+    color: ${colors.primary};
+    opacity: 0.05;
+  }
+
+  .shape-1 {
+    top: 15%;
+    left: 8%;
+    width: 64px;
+    height: 64px;
+    transform: rotate(-15deg);
+  }
+
+  .shape-2 {
+    top: 60%;
+    right: 12%;
+    width: 120px;
+    height: 120px;
+    transform: rotate(10deg);
+  }
+
+  .shape-3 {
+    bottom: 20%;
+    left: 45%;
+    width: 48px;
+    height: 48px;
+    transform: rotate(45deg);
+  }
+  
+  .shape-4 {
+    top: 10%;
+    right: 25%;
+    width: 32px;
+    height: 32px;
+  }
+`;
+
+export const TopBanner = styled.header`
+  background-color: transparent;
+  color: ${colors.ink};
+  padding: 0 ${spacing.section};
+  height: ${sizes.navHeight};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
 `;
 
-export const SectionEyebrowOlive = styled.div`
-  background-color: ${colors.tintOlive};
-  color: ${colors.ink};
-  ${typography.display}
-  border-radius: ${rounded.none};
-  padding: 24px 16px;
-`;
-
-export const SectionEyebrowSalmon = styled.div`
-  background-color: ${colors.tintSalmon};
-  color: ${colors.ink};
-  ${typography.display}
-  border-radius: ${rounded.none};
-  padding: 24px 16px;
-`;
-
-export const RibbonCardTitle = styled.div`
-  background-color: ${colors.canvas};
-  color: ${colors.ink};
-  border-bottom: 1px solid ${colors.frameInk};
-  ${typography.heading3}
-  border-radius: ${rounded.none};
-  padding: 6px 12px;
-`;
-
-export const RibbonCardBody = styled.div<{ tintColor?: string }>`
-  background-color: ${({ tintColor }) => tintColor || colors.tintSage};
-  color: ${colors.ink};
-  border: 1px solid ${colors.frameInk};
-  ${typography.body}
-  border-radius: ${rounded.none};
-  padding: 12px 16px;
-  position: relative; /* For product notch */
-`;
-
-export const CtaBlockRed = styled.div`
-  background-color: ${colors.primary};
-  color: ${colors.onPrimary};
-  border: 1px solid ${colors.frameInk};
-  ${typography.body}
-  border-radius: ${rounded.none};
-  padding: 16px;
-`;
-
-export const PhoneCallout = styled.div`
-  background-color: ${colors.frameInk};
-  color: ${colors.primary};
+export const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${spacing.sm};
   ${typography.heading2}
-  border-radius: ${rounded.none};
-  padding: 4px 8px;
-`;
-
-export const BuyADellSticker = styled.div`
-  background-color: ${colors.yellowSticker};
+  font-weight: 700;
   color: ${colors.ink};
-  border: 1px solid ${colors.frameInk};
-  ${typography.button}
-  border-radius: ${rounded.none};
-  padding: 4px 8px;
-  display: inline-block;
-  box-shadow: 1px 1px 0 ${colors.frameInk}, inset 1px 1px 0 rgba(255, 255, 255, 0.6); /* hard edge bevel */
+  letter-spacing: -0.01em;
+  
+  svg {
+    color: ${colors.primary};
+  }
 `;
 
-export const NewBurstSticker = styled.div`
-  background-color: ${colors.yellowSticker};
-  color: ${colors.ink};
-  ${typography.button}
-  border-radius: ${rounded.none};
-  padding: 4px 8px;
-  display: inline-block;
-  transform: rotate(-15deg);
-  box-shadow: 1px 1px 0 ${colors.frameInk}, inset 1px 1px 0 rgba(255, 255, 255, 0.6);
-`;
-
-export const CertSeal = styled.div`
-  background-color: ${colors.primary};
-  color: ${colors.canvas};
-  ${typography.button}
-  border-radius: ${rounded.full};
-  width: 64px;
-  height: 64px;
+export const InputWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  border: 2px solid ${colors.onPrimary};
-  box-shadow: 0 0 0 2px ${colors.primary}, 1px 1px 0 ${colors.frameInk};
+
+  svg {
+    position: absolute;
+    left: ${spacing.md};
+    color: ${colors.grayText};
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Eye icon right */
+  .right-icon {
+    left: auto;
+    right: ${spacing.md};
+    cursor: pointer;
+    &:hover {
+      color: ${colors.ink};
+    }
+  }
 `;
 
-export const IconLabelNav = styled.nav`
-  background-color: ${colors.canvas};
+export const TextInput = styled.input<{ hasIcon?: boolean; hasRightIcon?: boolean }>`
+  appearance: none;
+  background-color: ${colors.inputBg};
   color: ${colors.ink};
-  ${typography.uiLabel}
-  border-radius: ${rounded.none};
-  padding: 8px;
-  display: flex;
-  gap: 16px;
-  align-items: center;
-`;
-
-export const TextInput = styled.input`
-  background-color: ${colors.canvas};
-  color: ${colors.ink};
-  border: 1px solid ${colors.frameInk};
+  border: 1px solid ${colors.border};
   ${typography.body}
-  border-radius: ${rounded.none};
-  padding: 4px 6px;
+  border-radius: ${rounded.md};
+  padding: 0 ${spacing.md};
+  padding-left: ${({ hasIcon }) => (hasIcon ? '40px' : spacing.md)};
+  padding-right: ${({ hasRightIcon }) => (hasRightIcon ? '40px' : spacing.md)};
+  height: ${sizes.inputHeight};
   outline: none;
+  box-shadow: none;
+  transition: border-color ${transitions.fast}, box-shadow ${transitions.fast};
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:hover {
+    border-color: #d1d5db;
+  }
 
   &:focus {
-    box-shadow: 0 0 0 1px ${colors.frameInk};
+    border-color: ${colors.primary};
+    box-shadow: 0 0 0 2px rgba(80, 70, 229, 0.15);
   }
 `;
 
 export const ButtonPrimary = styled.button`
-  background-color: ${colors.frameInk};
+  background-color: ${colors.primary};
   color: ${colors.onPrimary};
-  border: 1px solid ${colors.frameInk};
+  border: none;
   ${typography.button}
-  border-radius: ${rounded.none};
-  padding: 6px 16px;
+  border-radius: ${rounded.md};
+  padding: 0 ${spacing.xl};
+  height: ${sizes.buttonHeight};
   cursor: pointer;
-  
+  transition: background-color ${transitions.fast}, transform ${transitions.fast};
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${spacing.sm};
+
+  &:hover {
+    background-color: ${colors.primaryHover};
+  }
+
   &:active {
-    background-color: ${colors.ink};
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `;
 
 export const ButtonSecondary = styled.button`
   background-color: ${colors.canvas};
   color: ${colors.ink};
-  border: 1px solid ${colors.frameInk};
+  border: 1px solid ${colors.border};
   ${typography.button}
-  border-radius: ${rounded.none};
-  padding: 6px 16px;
+  border-radius: ${rounded.md};
+  padding: 0 ${spacing.xl};
+  height: ${sizes.buttonHeight};
   cursor: pointer;
-  
+  transition: border-color ${transitions.fast}, background-color ${transitions.fast};
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+  }
+
   &:active {
-    background-color: #f0f0f0;
+    background-color: #f3f4f6;
   }
 `;
 
 export const ButtonTextLink = styled.button`
   background-color: transparent;
-  color: ${colors.link};
-  ${typography.link}
-  border-radius: ${rounded.none};
+  color: ${colors.primary};
+  ${typography.bodySm}
+  font-weight: 500;
   border: none;
   padding: 0;
   cursor: pointer;
-`;
+  transition: color ${transitions.fast};
 
-export const FooterBand = styled.footer`
-  background-color: ${colors.canvas};
-  color: ${colors.ink};
-  border-top: 1px solid ${colors.frameInk};
-  ${typography.bodySm}
-  padding: 16px;
-  margin-top: ${spacing.section};
+  &:hover {
+    color: ${colors.primaryHover};
+    text-decoration: underline;
+  }
 `;
