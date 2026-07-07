@@ -15,3 +15,4 @@ An AI-powered web application that generates concise summaries from long text us
 - FastAPI
 - Python
 - Docker
+- Groq API
